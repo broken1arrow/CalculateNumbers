@@ -94,36 +94,6 @@ public class ConfigSettings {
 
 					customConfig.set("Values.Wapons." + key, value);
 				}
-				/*//      Helmet
-				customConfig.set("Armor.Helmet.Leather", "1.75");
-				customConfig.set("Armor.Helmet.Chainmail", "1.75");
-				customConfig.set("Armor.Helmet.Gold", "1.50");
-				customConfig.set("Armor.Helmet.Iron", "1.75");
-				customConfig.set("Armor.Helmet.Dimond", "2");
-				customConfig.set("Armor.Helmet.Netherite", "3");
-				//     ChestPlate
-				customConfig.set("Armor.ChestPlate.Leather", "1.75");
-				customConfig.set("Armor.ChestPlate.Chainmail", "1.75");
-				customConfig.set("Armor.ChestPlate.Gold", "1.5");
-				customConfig.set("Armor.ChestPlate.Iron", "1.75");
-				customConfig.set("Armor.ChestPlate.Dimond", "2");
-				customConfig.set("Armor.ChestPlate.Netherite", "3");
-				//     Leggings
-				customConfig.set("Armor.Leggings.Leather", "1.75");
-				customConfig.set("Armor.Leggings.Chainmail", "1.75");
-				customConfig.set("Armor.Leggings.Gold", "1.5");
-				customConfig.set("Armor.Leggings.Iron", "1.75");
-				customConfig.set("Armor.Leggings.Dimond", "2");
-				customConfig.set("Armor.Leggings.Netherite", "3");
-				//     Boots
-				customConfig.set("Armor.Boots.Leather", "1.75");
-				customConfig.set("Armor.Boots.Chainmail", "1.75");
-				customConfig.set("Armor.Boots.Gold", "1.5");
-				customConfig.set("Armor.Boots.Iron", "1.75");
-				customConfig.set("Armor.Boots.Dimond", "2");
-				customConfig.set("Armor.Boots.Netherite", "3");*/
-				//Tools
-
 			}
 			save();
 		}

@@ -218,7 +218,7 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 	}
 
 	public List<String> listning() {
-		List<String> values = config.getCustomConfig().getStringList("Values.rank");
+		List<String> values = config.getCustomConfig().getStringList("Values.Rank");
 		if (values.isEmpty())
 			return Collections.singletonList("Warn!!! Values missing or Values are emty");
 		return values;

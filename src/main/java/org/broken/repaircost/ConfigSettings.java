@@ -58,7 +58,7 @@ public class ConfigSettings {
 
 			if (customConfig.getKeys(false).isEmpty()) {
 				customConfig.set("EmptyPlaceholder", false);
-				customConfig.set("Values.rank", new String[]{"Examplerank: 6", "Examplerank1: 4", "Examplerank2: 2"});
+				customConfig.set("Values.Rank", new String[]{"Examplerank: 6", "Examplerank1: 4", "Examplerank2: 2"});
 				customConfig.set("Math", "{toolDurability} / {valueNumber}");
 
 				String[] armorPath = {"GOLDEN_HELMET, 1.75", "IRON_HELMET,1.5", "DIAMOND_HELMET,2", "NETHERITE_HELMET,3",

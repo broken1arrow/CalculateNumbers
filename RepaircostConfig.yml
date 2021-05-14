@@ -25,7 +25,7 @@
 
 EmptyPlaceholder: false
 Values:
-  rank:
+  Rank:
     - Examplerank: 6
     - Examplerank1: 4
     - Examplerank2: 2

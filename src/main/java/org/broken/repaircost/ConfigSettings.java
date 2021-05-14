@@ -88,6 +88,14 @@ public class ConfigSettings {
 				customConfig.set("Armor.Boots.Iron", "1.75");
 				customConfig.set("Armor.Boots.Dimond", "2");
 				customConfig.set("Armor.Boots.Netherite", "3");
+				//Tools
+				String[] path = {"STONE_HOE", "GOLDEN_HOE", "IRON_HOE", "DIAMOND_HOE", "NETHERITE_HOE",
+						"STONE_SHOVEL", "GOLDEN_SHOVEL", "IRON_SHOVEL", "DIAMOND_SHOVEL", "NETHERITE_SHOVEL",
+						"STONE_AXE", "GOLDEN_AXE", "IRON_AXE", "DIAMOND_AXE", "NETHERITE_AXE", "STONE_PICKAXE",
+						"GOLDEN_PICKAXE", "IRON_PICKAXE", "DIAMOND_PICKAXE", "NETHERITE_PICKAXE"};
+
+				for (String key : path)
+					customConfig.set("Tools." + key, "3");
 
 			}
 			save();

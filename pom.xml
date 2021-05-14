@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.broken.repaircost.calculatenumbers</groupId>
-    <artifactId>Expansion-repaircost</artifactId>
+    <groupId>org.broken.repaircost.CalculateNumbers</groupId>
+    <artifactId>Expansion-CalculateNumbers</artifactId>
     <version>0.6</version>
 
     <properties>

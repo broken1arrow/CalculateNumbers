@@ -42,13 +42,15 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 					if (output.startsWith("tool")) {
 						double outputNumber = listOfStringValues((Player) player, output);
 
-						ItemStack inHandCurentDurability = ((Player) player).getItemInHand();
-						short curentDurability = inHandCurentDurability.getDurability();
-						double numberOutput = (mathFormula(curentDurability, outputNumber));
+						double toolListNumber = listOfTools((Player) player);
+						//short curentDurability = ((Player) player).getItemInHand().getDurability();
 
-						if (TwoDecimal) {
+						double numberOutput = (mathFormula(toolListNumber, outputNumber));
+
+						double roundOff = Math.round(numberOutput * 100.0) / 100.0;
+						if (TwoDecimal && roundOff > 0) {
 							TwoDecimal = false;
-							return String.valueOf(numberOutput);
+							return String.valueOf(roundOff);
 						} else return String.valueOf(Integer.valueOf((int) numberOutput));
 					}
 
@@ -58,7 +60,7 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 
 						double outputarmorDmgNumber = (listOfArmorValue / outputNumber);
 						double roundOff = Math.round(outputarmorDmgNumber * 100.0) / 100.0;
-						if (TwoDecimal) {
+						if (TwoDecimal && roundOff > 0) {
 							TwoDecimal = false;
 							return String.valueOf(roundOff);
 						} else return String.valueOf(Integer.valueOf((int) outputarmorDmgNumber));
@@ -75,12 +77,14 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 		return "";
 	}
 
-	private double mathFormula(short durability, double outputNumber) {
-		String stringDurability = String.valueOf(durability);
+	private double mathFormula(double toolDurability, double outputNumber) {
+		String stringToolDurability = String.valueOf(toolDurability);
 		String stringoutputNumber = String.valueOf(outputNumber);
+
+
 		try {
 			String formulaString = config.getCustomConfig().getString("Math");
-			String total = formulaString.replace("{toolDurability}", stringDurability).replace("{valueNumber}", stringoutputNumber);
+			String total = formulaString.replace("{toolDurability}", stringToolDurability).replace("{valueNumber}", stringoutputNumber);
 			String[] splite = total.split(" ");
 
 
@@ -199,6 +203,26 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 		return (helm + ChestPlate + legging + boot);
 	}
 
+	private double listOfTools(Player player) {
+		String inv = String.valueOf(player.getItemInHand().getType());
+		short curentDurability = player.getItemInHand().getDurability();
+
+		ConfigurationSection congest = config.getCustomConfig();
+		ConfigurationSection configSection = congest.getConfigurationSection("Tools.");
+		if (configSection != null) {
+			for (String key : configSection.getKeys(true)) {
+				if (key.equals(inv))
+					return (curentDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
+				
+			}
+		}
+		return 0;
+	}
+
+	private double listOfToolsInventory(Player player) {
+		return 0;
+	}
+
 	private double listOfStringValues(Player players, String input) {
 		String[] inputSplited;
 
@@ -224,12 +248,10 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 
 	public List<String> listning() {
 		List<String> values = config.getCustomConfig().getStringList("Values");
-		System.out.println(values);
 		if (values.isEmpty())
 			return Collections.singletonList("Warn!!! Values missing or Values are emty");
 		return values;
 	}
-
 
 	@Override
 	public Map<String, Object> getDefaults() {

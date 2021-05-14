@@ -1,0 +1,82 @@
+# Dynamic change numbers, config version 0.60
+# This is main config for Calulate damage on tools and wapons
+#
+# You put in your rank name and a number as some standard, it will
+# divide your number with how much damage the tool has lost.
+# You can for now only change the order and use <+,/,*,->,
+# will look on fix for this.
+#
+# Use the placeholder like this, it need to output same name has you
+# set up in the config
+# %number_numbervalue,tool:{a placeholder from your ranking plugin}%
+#
+# If you want to have two decimals use
+# %number_numbervalue,decimal,tool:{a placeholder from your ranking plugin}%
+#
+# For calcuate armor values use placeholder below.
+# %number_numbervalue,armor:{a placeholder from your ranking plugin}%
+#
+# If you want to have two decimals use this placeholder
+# %number_numbervalue,decimal,armor:{a placeholder from your ranking plugin}%
+#
+# Do like this:
+# Values:
+# - 'Examplerank: 5'
+
+EmptyPlaceholder: false
+Values:
+  - 'Examplerank: 6'
+  - 'Examplerank1: 4'
+  - 'Examplerank2: 2'
+  - 'Examplerank3: 1'
+Math: '{toolDurability} / {valueNumber}'
+Armor:
+  Helmet:
+    Leather: 1.75
+    Chainmail: 1.75
+    Gold: 1.50
+    Iron: 1.75
+    Dimond: 2
+    Netherite: 3
+  ChestPlate:
+    Leather: 1.75
+    Chainmail: 1.75
+    Gold: 1.5
+    Iron: 1.75
+    Dimond: 2
+    Netherite: 3
+  Leggings:
+    Leather: 1.75
+    Chainmail: 1.75
+    Gold: 1.5
+    Iron: 1.75
+    Dimond: 2
+    Netherite: 3
+  Boots:
+    Leather: 1.75
+    Chainmail: 1.75
+    Gold: 1.5
+    Iron: 1.75
+    Dimond: 2
+    Netherite: 3
+Tools:
+  STONE_HOE: 3
+  GOLDEN_HOE: 3
+  IRON_HOE: 3
+  DIAMOND_HOE: 3
+  NETHERITE_HOE: 3
+  STONE_SHOVEL: 3
+  GOLDEN_SHOVEL: 3
+  IRON_SHOVEL: 3
+  DIAMOND_SHOVEL: 3
+  NETHERITE_SHOVEL: 3
+  STONE_AXE: 3
+  GOLDEN_AXE: 3
+  IRON_AXE: 3
+  DIAMOND_AXE: 1.2
+  NETHERITE_AXE: 1.3
+  STONE_PICKAXE: 2
+  GOLDEN_PICKAXE: 3
+  IRON_PICKAXE: 3
+  DIAMOND_PICKAXE: 3
+  NETHERITE_PICKAXE: 5

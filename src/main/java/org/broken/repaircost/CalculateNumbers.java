@@ -3,7 +3,6 @@ package org.broken.repaircost;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -115,82 +114,44 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 
 	private double listOfArmor(Player player) {
 		PlayerInventory inv = player.getInventory();
+
 		ItemStack helmet = inv.getHelmet();
 		ItemStack chest = inv.getChestplate();
 		ItemStack boots = inv.getBoots();
 		ItemStack leggings = inv.getLeggings();
+
 		double helm = 0.0;
 		double ChestPlate = 0.0;
 		double legging = 0.0;
 		double boot = 0.0;
-
-		ConfigurationSection congest = config.getCustomConfig();
-		ConfigurationSection configSection = congest.getConfigurationSection("Armor");
 		try {
+			ConfigurationSection congest = config.getCustomConfig();
+			ConfigurationSection configSection = congest.getConfigurationSection("Values.Armor");
+
 			if (configSection != null) {
 				for (String key : configSection.getKeys(true)) {
 
 					if (helmet != null) {
 						short helmetDurability = helmet.getDurability();
-						if (helmet.getType() == Material.LEATHER_HELMET && key.equals("Helmet.Leather"))
-							helm = (helmetDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (helmet.getType() == Material.LEGACY_GOLD_HELMET && key.equals("Helmet.Gold"))
-							helm = (helmetDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (helmet.getType() == Material.CHAINMAIL_HELMET && key.equals("Helmet.Chainmail"))
-							helm = (helmetDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (helmet.getType() == Material.IRON_HELMET && key.equals("Helmet.Iron"))
-							helm = (helmetDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (helmet.getType() == Material.DIAMOND_HELMET && key.equals("Helmet.Dimond"))
-							helm = (helmetDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (helmet.getType() == Material.NETHERITE_HELMET && key.equals("Helmet.Netherite"))
+						if (key.equals(String.valueOf(helmet.getType())))
 							helm = (helmetDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
 					}
 
 					if (chest != null) {
 						short chestDurability = chest.getDurability();
-						if (chest.getType() == Material.LEATHER_CHESTPLATE && key.equals("ChestPlate.Leather"))
-							ChestPlate = (chestDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (chest.getType() == Material.LEGACY_GOLD_CHESTPLATE && key.equals("ChestPlate.Gold"))
-							ChestPlate = (chestDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (chest.getType() == Material.CHAINMAIL_CHESTPLATE && key.equals("ChestPlate.Chainmail"))
-							ChestPlate = (chestDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (chest.getType() == Material.IRON_CHESTPLATE && key.equals("ChestPlate.Iron"))
-							ChestPlate = (chestDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (chest.getType() == Material.DIAMOND_CHESTPLATE && key.equals("ChestPlate.Dimond"))
-							ChestPlate = (chestDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (chest.getType() == Material.NETHERITE_CHESTPLATE && key.equals("ChestPlate.Netherite"))
+						if (key.equals(String.valueOf(chest.getType())))
 							ChestPlate = (chestDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
 					}
 
 					if (leggings != null) {
 						short leggingsDurability = leggings.getDurability();
-						if (leggings.getType() == Material.LEATHER_LEGGINGS && key.equals("Leggings.Leather"))
-							legging = (leggingsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (leggings.getType() == Material.LEGACY_GOLD_LEGGINGS && key.equals("Leggings.Gold"))
-							legging = (leggingsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (leggings.getType() == Material.CHAINMAIL_LEGGINGS && key.equals("Leggings.Chainmail"))
-							legging = (leggingsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (leggings.getType() == Material.IRON_LEGGINGS && key.equals("Leggings.Iron"))
-							legging = (leggingsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (leggings.getType() == Material.DIAMOND_LEGGINGS && key.equals("Leggings.Dimond"))
-							legging = (leggingsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (leggings.getType() == Material.NETHERITE_LEGGINGS && key.equals("Leggings.Netherite"))
+						if (key.equals(String.valueOf(leggings.getType())))
 							legging = (leggingsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
 					}
 
 					if (boots != null) {
 						short bootsDurability = boots.getDurability();
-						if (boots.getType() == Material.LEATHER_BOOTS && key.equals("Boots.Leather"))
-							boot = (bootsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (boots.getType() == Material.LEGACY_GOLD_BOOTS && key.equals("Boots.Leather"))
-							boot = (bootsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (boots.getType() == Material.CHAINMAIL_BOOTS && key.equals("Boots.Leather"))
-							boot = (bootsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (boots.getType() == Material.IRON_BOOTS && key.equals("Boots.Leather"))
-							boot = (bootsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (boots.getType() == Material.DIAMOND_BOOTS && key.equals("Boots.Leather"))
-							boot = (bootsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-						else if (boots.getType() == Material.NETHERITE_BOOTS && key.equals("Boots.Leather"))
+						if (key.equals(String.valueOf(boots.getType())))
 							boot = (bootsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
 					}
 				}
@@ -208,14 +169,24 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 		short curentDurability = player.getItemInHand().getDurability();
 
 		ConfigurationSection congest = config.getCustomConfig();
-		ConfigurationSection configSection = congest.getConfigurationSection("Tools.");
-		if (configSection != null) {
-			for (String key : configSection.getKeys(true)) {
-				if (key.equals(inv))
-					return (curentDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-				
+		ConfigurationSection configSectionTool = congest.getConfigurationSection("Values.Tools.");
+
+		ConfigurationSection configSectionWapons = congest.getConfigurationSection("Values.Wapons.");
+
+		if (configSectionTool != null) {
+			for (String key : configSectionTool.getKeys(true)) {
+				if (key.equals(inv) && !key.equals("AIR"))
+					return (curentDurability * Double.parseDouble(configSectionTool.getString(key, String.valueOf(0.0))));
 			}
 		}
+
+		if (configSectionWapons != null) {
+			for (String key : configSectionWapons.getKeys(true)) {
+				if (key.equals(inv) && !key.equals("AIR"))
+					return (curentDurability * Double.parseDouble(configSectionWapons.getString(key, String.valueOf(0.0))));
+			}
+		}
+
 		return 0;
 	}
 
@@ -247,7 +218,7 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 	}
 
 	public List<String> listning() {
-		List<String> values = config.getCustomConfig().getStringList("Values");
+		List<String> values = config.getCustomConfig().getStringList("Values.rank");
 		if (values.isEmpty())
 			return Collections.singletonList("Warn!!! Values missing or Values are emty");
 		return values;

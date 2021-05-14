@@ -21,62 +21,66 @@
 #
 # Do like this:
 # Values:
-# - 'Examplerank: 5'
+# - Examplerank: 5
 
 EmptyPlaceholder: false
 Values:
-  - 'Examplerank: 6'
-  - 'Examplerank1: 4'
-  - 'Examplerank2: 2'
-  - 'Examplerank3: 1'
-Math: '{toolDurability} / {valueNumber}'
-Armor:
-  Helmet:
-    Leather: 1.75
-    Chainmail: 1.75
-    Gold: 1.50
-    Iron: 1.75
-    Dimond: 2
-    Netherite: 3
-  ChestPlate:
-    Leather: 1.75
-    Chainmail: 1.75
-    Gold: 1.5
-    Iron: 1.75
-    Dimond: 2
-    Netherite: 3
-  Leggings:
-    Leather: 1.75
-    Chainmail: 1.75
-    Gold: 1.5
-    Iron: 1.75
-    Dimond: 2
-    Netherite: 3
-  Boots:
-    Leather: 1.75
-    Chainmail: 1.75
-    Gold: 1.5
-    Iron: 1.75
-    Dimond: 2
-    Netherite: 3
-Tools:
-  STONE_HOE: 3
-  GOLDEN_HOE: 3
-  IRON_HOE: 3
-  DIAMOND_HOE: 3
-  NETHERITE_HOE: 3
-  STONE_SHOVEL: 3
-  GOLDEN_SHOVEL: 3
-  IRON_SHOVEL: 3
-  DIAMOND_SHOVEL: 3
-  NETHERITE_SHOVEL: 3
-  STONE_AXE: 3
-  GOLDEN_AXE: 3
-  IRON_AXE: 3
-  DIAMOND_AXE: 1.2
-  NETHERITE_AXE: 1.3
-  STONE_PICKAXE: 2
-  GOLDEN_PICKAXE: 3
-  IRON_PICKAXE: 3
-  DIAMOND_PICKAXE: 3
-  NETHERITE_PICKAXE: 5
+  rank:
+    - Examplerank: 6
+    - Examplerank1: 4
+    - Examplerank2: 2
+  Armor:
+    GOLDEN_HELMET: 1.75
+    IRON_HELMET: 1.5
+    DIAMOND_HELMET: 2
+    NETHERITE_HELMET: 3
+    GOLDEN_CHESTPLATE: 1.8
+    IRON_CHESTPLATE: 1.5
+    DIAMOND_CHESTPLATE: 2.5
+    NETHERITE_CHESTPLATE: 3.5
+    GOLDEN_LEGGINGS: 1.75
+    IRON_LEGGINGS: 1.6
+    DIAMOND_LEGGINGS: 2
+    NETHERITE_LEGGINGS: 3.2
+    GOLDEN_BOOT: 1.75
+    IRON_BOOT: 1.75
+    DIAMOND_BOOT: 2
+    NETHERITE_BOOT: 3
+  Tools:
+    WOODEN_HOE: 0
+    STONE_HOE: 1.5
+    GOLDEN_HOE: 1.2
+    IRON_HOE: 1.5
+    DIAMOND_HOE: 1.7
+    NETHERITE_HOE: 1.8
+    WOODEN_SHOVEL: 0
+    STONE_SHOVEL: 1.5
+    GOLDEN_SHOVEL: 1.2
+    IRON_SHOVEL: 1.5
+    DIAMOND_SHOVEL: 1.8
+    NETHERITE_SHOVEL: 2
+    WOODEN_PICKAXE: 0
+    STONE_PICKAXE: 1.5
+    GOLDEN_PICKAXE: 1.2
+    IRON_PICKAXE: 1.5
+    DIAMOND_PICKAXE: 1.8
+    NETHERITE_PICKAXE: 2.1
+  Wapons:
+    WOODEN_AXE: 0
+    STONE_AXE: 1.2
+    GOLDEN_AXE: 0.8
+    IRON_AXE: 1.5
+    DIAMOND_AXE: 1.8
+    NETHERITE_AXE: 2
+    WOODEN_SWORD: 0
+    STONE_SWORD: 1.2
+    GOLDEN_SWORD: 0.8
+    IRON_SWORD: 1.5
+    DIAMOND_SWORD: 1.8
+    NETHERITE_SWORD: 2
+    BOW: 1.3
+    CROSSBOW: 1.3
+# Math only works for tools if you change this,
+# will look on better solution or remove this.
+Math: {toolDurability} / {valueNumber}
+

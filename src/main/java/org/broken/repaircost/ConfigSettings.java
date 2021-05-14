@@ -58,9 +58,43 @@ public class ConfigSettings {
 
 			if (customConfig.getKeys(false).isEmpty()) {
 				customConfig.set("EmptyPlaceholder", false);
-				customConfig.set("Values", new String[]{"Examplerank: 6", "Examplerank1: 4", "Examplerank2: 2"});
+				customConfig.set("Values.rank", new String[]{"Examplerank: 6", "Examplerank1: 4", "Examplerank2: 2"});
 				customConfig.set("Math", "{toolDurability} / {valueNumber}");
-				//      Helmet
+
+				String[] armorPath = {"GOLDEN_HELMET, 1.75", "IRON_HELMET,1.5", "DIAMOND_HELMET,2", "NETHERITE_HELMET,3",
+						"GOLDEN_CHESTPLATE,1.8", "IRON_CHESTPLATE,1.5", "DIAMOND_CHESTPLATE, 2.5", "NETHERITE_CHESTPLATE,3.5",
+						"GOLDEN_LEGGINGS,1.75", "IRON_LEGGINGS,1.6", "DIAMOND_LEGGINGS,2", "NETHERITE_LEGGINGS,3.2",
+						"GOLDEN_BOOT,1.75", "IRON_BOOT,1.75", "DIAMOND_BOOT,2", "NETHERITE_BOOT,3"};
+
+				for (String keys : armorPath) {
+					String[] Split = keys.split(",");
+					String key = Split[0];
+					String value = Split[1];
+					customConfig.set("Values.Armor." + key, value);
+				}
+
+				String[] toolPath = {"WOODEN_HOE,0", "STONE_HOE,1.5", "GOLDEN_HOE,1.2", "IRON_HOE,1.5", "DIAMOND_HOE,1.7", "NETHERITE_HOE,1.8",
+						"WOODEN_SHOVEL,0", "STONE_SHOVEL,1.5", "GOLDEN_SHOVEL,1.2", "IRON_SHOVEL,1.5", "DIAMOND_SHOVEL,1.8", "NETHERITE_SHOVEL,2",
+						"WOODEN_PICKAXE,0", "STONE_PICKAXE,1.5", "GOLDEN_PICKAXE,1.2", "IRON_PICKAXE,1.5", "DIAMOND_PICKAXE,1.8", "NETHERITE_PICKAXE,2.1"};
+
+				for (String keys : toolPath) {
+					String[] Split = keys.split(",");
+					String key = Split[0];
+					String value = Split[1];
+					customConfig.set("Values.Tools." + key, value);
+				}
+				String[] waponsPath = {"WOODEN_AXE,0", "STONE_AXE,1.2", "GOLDEN_AXE,0.8", "IRON_AXE,1.5", "DIAMOND_AXE,1.8", "NETHERITE_AXE,2",
+						"WOODEN_SWORD,0", "STONE_SWORD,1.2", "GOLDEN_SWORD,0.8", "IRON_SWORD,1.5", "DIAMOND_SWORD,1.8", "NETHERITE_SWORD,2",
+						"BOW,1.3", "CROSSBOW,1.3"};
+
+				for (String keys : waponsPath) {
+					String[] Split = keys.split(",");
+					String key = Split[0];
+					String value = Split[1];
+
+					customConfig.set("Values.Wapons." + key, value);
+				}
+				/*//      Helmet
 				customConfig.set("Armor.Helmet.Leather", "1.75");
 				customConfig.set("Armor.Helmet.Chainmail", "1.75");
 				customConfig.set("Armor.Helmet.Gold", "1.50");
@@ -87,15 +121,8 @@ public class ConfigSettings {
 				customConfig.set("Armor.Boots.Gold", "1.5");
 				customConfig.set("Armor.Boots.Iron", "1.75");
 				customConfig.set("Armor.Boots.Dimond", "2");
-				customConfig.set("Armor.Boots.Netherite", "3");
+				customConfig.set("Armor.Boots.Netherite", "3");*/
 				//Tools
-				String[] path = {"STONE_HOE", "GOLDEN_HOE", "IRON_HOE", "DIAMOND_HOE", "NETHERITE_HOE",
-						"STONE_SHOVEL", "GOLDEN_SHOVEL", "IRON_SHOVEL", "DIAMOND_SHOVEL", "NETHERITE_SHOVEL",
-						"STONE_AXE", "GOLDEN_AXE", "IRON_AXE", "DIAMOND_AXE", "NETHERITE_AXE", "STONE_PICKAXE",
-						"GOLDEN_PICKAXE", "IRON_PICKAXE", "DIAMOND_PICKAXE", "NETHERITE_PICKAXE"};
-
-				for (String key : path)
-					customConfig.set("Tools." + key, "3");
 
 			}
 			save();

@@ -1,5 +1,6 @@
 package org.broken.repaircost;
 
+import lombok.SneakyThrows;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.Configurable;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -10,8 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CalculateNumbers extends PlaceholderExpansion implements Configurable {
@@ -24,7 +24,6 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 		config.reload();
 
 	}
-
 
 	@Override
 	public String onRequest(OfflinePlayer player, String identifier) {
@@ -40,9 +39,7 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 						TwoDecimal = true;
 					if (output.startsWith("tool")) {
 						double outputNumber = listOfStringValues((Player) player, output);
-
 						double toolListNumber = listOfTools((Player) player);
-						//short curentDurability = ((Player) player).getItemInHand().getDurability();
 
 						double numberOutput = (mathFormula(toolListNumber, outputNumber));
 
@@ -124,38 +121,29 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 		double ChestPlate = 0.0;
 		double legging = 0.0;
 		double boot = 0.0;
+		
 		try {
-			ConfigurationSection congest = config.getCustomConfig();
-			ConfigurationSection configSection = congest.getConfigurationSection("Values.Armor");
-
-			if (configSection != null) {
-				for (String key : configSection.getKeys(true)) {
-
-					if (helmet != null) {
-						short helmetDurability = helmet.getDurability();
-						if (key.equals(String.valueOf(helmet.getType())))
-							helm = (helmetDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-					}
-
-					if (chest != null) {
-						short chestDurability = chest.getDurability();
-						if (key.equals(String.valueOf(chest.getType())))
-							ChestPlate = (chestDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-					}
-
-					if (leggings != null) {
-						short leggingsDurability = leggings.getDurability();
-						if (key.equals(String.valueOf(leggings.getType())))
-							legging = (leggingsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-					}
-
-					if (boots != null) {
-						short bootsDurability = boots.getDurability();
-						if (key.equals(String.valueOf(boots.getType())))
-							boot = (bootsDurability * Double.parseDouble(configSection.getString(key, String.valueOf(0.0))));
-					}
-				}
+			if (helmet != null && HashMap().get(String.valueOf(helmet.getType())) != null) {
+				short helmetDurability = helmet.getDurability();
+				helm = (helmetDurability * Double.parseDouble(HashMap().get(String.valueOf(helmet.getType()))));
 			}
+
+			if (chest != null && HashMap().get(String.valueOf(chest.getType())) != null) {
+				short chestDurability = chest.getDurability();
+				ChestPlate = (chestDurability * Double.parseDouble(HashMap().get(String.valueOf(chest.getType()))));
+			}
+
+			if (leggings != null && HashMap().get(String.valueOf(leggings.getType())) != null) {
+				short leggingsDurability = leggings.getDurability();
+				legging = (leggingsDurability * Double.parseDouble(HashMap().get(String.valueOf(leggings.getType()))));
+			}
+
+			if (boots != null && HashMap().get(String.valueOf(boots.getType())) != null) {
+				short bootsDurability = boots.getDurability();
+				boot = (bootsDurability * Double.parseDouble(HashMap().get(String.valueOf(boots.getType()))));
+			}
+
+
 		} catch (Throwable ex) {
 			System.out.println("[CalcuateNumbers] You has an error in your yml config file");
 			ex.printStackTrace();
@@ -165,26 +153,17 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 	}
 
 	private double listOfTools(Player player) {
-		String inv = String.valueOf(player.getItemInHand().getType());
+		String itemInHand = String.valueOf(player.getItemInHand().getType());
 		short curentDurability = player.getItemInHand().getDurability();
 
-		ConfigurationSection congest = config.getCustomConfig();
-		ConfigurationSection configSectionTool = congest.getConfigurationSection("Values.Tools.");
-
-		ConfigurationSection configSectionWapons = congest.getConfigurationSection("Values.Wapons.");
-
-		if (configSectionTool != null) {
-			for (String key : configSectionTool.getKeys(true)) {
-				if (key.equals(inv) && !key.equals("AIR"))
-					return (curentDurability * Double.parseDouble(configSectionTool.getString(key, String.valueOf(0.0))));
-			}
+		if (HashMap().get(itemInHand) == null) {
+			System.out.println("[CalcuateNumbers] You miss something in the config, value return: " + HashMap().get(itemInHand));
+			return 0;
 		}
+		double itemFromConfig = Double.parseDouble(HashMap().get(itemInHand));
 
-		if (configSectionWapons != null) {
-			for (String key : configSectionWapons.getKeys(true)) {
-				if (key.equals(inv) && !key.equals("AIR"))
-					return (curentDurability * Double.parseDouble(configSectionWapons.getString(key, String.valueOf(0.0))));
-			}
+		if (itemFromConfig > 0) {
+			return (curentDurability * itemFromConfig);
 		}
 
 		return 0;
@@ -203,25 +182,36 @@ public class CalculateNumbers extends PlaceholderExpansion implements Configurab
 
 			if (i == 1) {
 				String output = PlaceholderAPI.setBracketPlaceholders(players, inputs);
+				double rankvalue = Double.parseDouble(HashMap().get(output));
 
-				for (String list : listning()) {
-					String[] splited = list.split(": ");
-					String outputvalue = splited[0];
+				return rankvalue;
 
-					if (output.equals(outputvalue)) {
-						return Double.parseDouble(splited[1]);
-					}
-				}
+
 			}
 		}
 		return 1;
 	}
 
-	public List<String> listning() {
-		List<String> values = config.getCustomConfig().getStringList("Values.Rank");
-		if (values.isEmpty())
-			return Collections.singletonList("Warn!!! Values missing or Values are emty");
-		return values;
+	@SneakyThrows
+	public HashMap<String, String> HashMap() {
+		HashMap<String, String> map = new HashMap<>();
+
+		ConfigurationSection getConfigs = config.getCustomConfig().getConfigurationSection("Values");
+
+		if (getConfigs != null) {
+			for (String keys : getConfigs.getKeys(false)) {
+				ConfigurationSection configs = config.getCustomConfig().getConfigurationSection("Values." + keys);
+
+				if (configs != null)
+					for (String s : configs.getKeys(true)) {
+						String value = configs.getString(s);
+						System.out.println(s);
+						map.putIfAbsent(s, value);
+					}
+
+			}
+		}
+		return map;
 	}
 
 	@Override

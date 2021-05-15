@@ -53,15 +53,25 @@ public class ConfigSettings {
 					+ "\n"
 					+ "\nDo like this:"
 					+ "\nValues:"
-					+ "\n- 'Examplerank: 5'"
+					+ "\n  Rank:"
+					+ "\n    Examplerank: 5"
 					+ "\n");
 
 			if (customConfig.getKeys(false).isEmpty()) {
 				customConfig.set("EmptyPlaceholder", false);
-				customConfig.set("Values.Rank", new String[]{"Examplerank: 6", "Examplerank1: 4", "Examplerank2: 2"});
+
+				String[] rankPath = {"Examplerank,6", "Examplerank1,4", "Examplerank2,2"};
+
+				for (String keys : rankPath) {
+					String[] Split = keys.split(",");
+					String key = Split[0];
+					String value = Split[1];
+					customConfig.set("Values.Rank." + key, value);
+				}
+
 				customConfig.set("Math", "{toolDurability} / {valueNumber}");
 
-				String[] armorPath = {"GOLDEN_HELMET, 1.75", "IRON_HELMET,1.5", "DIAMOND_HELMET,2", "NETHERITE_HELMET,3",
+				String[] armorPath = {"GOLDEN_HELMET,1.75", "IRON_HELMET,1.5", "DIAMOND_HELMET,2", "NETHERITE_HELMET,3",
 						"GOLDEN_CHESTPLATE,1.8", "IRON_CHESTPLATE,1.5", "DIAMOND_CHESTPLATE, 2.5", "NETHERITE_CHESTPLATE,3.5",
 						"GOLDEN_LEGGINGS,1.75", "IRON_LEGGINGS,1.6", "DIAMOND_LEGGINGS,2", "NETHERITE_LEGGINGS,3.2",
 						"GOLDEN_BOOT,1.75", "IRON_BOOT,1.75", "DIAMOND_BOOT,2", "NETHERITE_BOOT,3"};
@@ -116,6 +126,21 @@ public class ConfigSettings {
 			ex.printStackTrace();
 		}
 	}
+/*
+	@SneakyThrows
+	public HashMap<String, Integer> HashMap() {
+
+		ConfigurationSection config = getCustomConfig().getConfigurationSection("Values.Tools");
+
+		System.out.println(config);
+
+		if (config != null)
+			for (String s : config.getKeys(false)) {
+				int value = getCustomConfig().getInt("Values.Tools.");
+				maps.putIfAbsent(s, value);
+			}
+		return maps;
+	}*/
 
 	public String getContents(File customConfigFile) {
 		final StringBuilder sb = new StringBuilder();

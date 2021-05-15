@@ -20,15 +20,18 @@
 # %number_numbervalue,decimal,armor:{a placeholder from your ranking plugin}%
 #
 # Do like this:
+# Do like this:
 # Values:
-# - 'Examplerank: 5'
+#   Rank:
+#     Examplerank: 5
+
 
 EmptyPlaceholder: false
 Values:
   Rank:
-    - 'Examplerank: 6'
-    - 'Examplerank1: 4'
-    - 'Examplerank2: 2'
+    Examplerank: 6
+    Examplerank1: 4
+    Examplerank2: 2
   Armor:
     GOLDEN_HELMET: 1.75
     IRON_HELMET: 1.5
